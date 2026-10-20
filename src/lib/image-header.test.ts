@@ -1,6 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { MAX_IMPORT_BYTES, parseImageHeader, preflightImage } from './image-header';
-import { readRaster, validateImage } from './images';
 
 const ascii = (text: string) => Array.from(text, (character) => character.charCodeAt(0));
 
@@ -211,12 +210,11 @@ describe('encoded image dimensions', () => {
 describe('pre-decode import limits', () => {
   afterEach(() => vi.unstubAllGlobals());
 
-  it('rejects oversized encoded images before either browser decode entry point runs', async () => {
+  it('rejects oversized encoded images before browser decode runs', async () => {
     const decoder = vi.fn();
     vi.stubGlobal('createImageBitmap', decoder);
     const file = new File([png(9000, 5000)], 'large.png', { type: 'image/png' });
-    await expect(validateImage(file)).rejects.toThrow('4000 万');
-    await expect(readRaster(file)).rejects.toThrow('4000 万');
+    await expect(preflightImage(file)).rejects.toThrow('4000 万');
     expect(decoder).not.toHaveBeenCalled();
   });
 
@@ -236,23 +234,21 @@ describe('pre-decode import limits', () => {
       jpeg(20, 20).slice(0, 8),
       png(7, 8),
     ]) {
-      await expect(validateImage(new File([bytes], 'untrusted.png'))).rejects.toThrow();
+      await expect(preflightImage(new File([bytes], 'untrusted.png'))).rejects.toThrow();
     }
     expect(decoder).not.toHaveBeenCalled();
   });
 
-  it('allows the exact pixel limit and returns browser dimensions after orientation', async () => {
+  it('allows the exact pixel limit and reports encoded dimensions without resizing', async () => {
     await expect(preflightImage(new Blob([png(8000, 5000)]))).resolves.toEqual({
       format: 'png',
       width: 8000,
       height: 5000,
     });
-    const close = vi.fn();
-    vi.stubGlobal('createImageBitmap', vi.fn().mockResolvedValue({ width: 50, height: 80, close }));
-    await expect(validateImage(new File([jpeg(80, 50)], 'rotated.jpg'))).resolves.toEqual({
-      width: 50,
-      height: 80,
+    await expect(preflightImage(new File([jpeg(80, 50)], 'wide.jpg'))).resolves.toEqual({
+      format: 'jpeg',
+      width: 80,
+      height: 50,
     });
-    expect(close).toHaveBeenCalledOnce();
   });
 });

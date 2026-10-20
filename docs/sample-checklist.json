@@ -1,0 +1,565 @@
+{
+  "schemaVersion": 1,
+  "sample": {
+    "id": "user-mexico-collage-001",
+    "sourceBasename": "codex-clipboard-6c17a7a8-8c50-4c56-bd5f-38952b71195e.png",
+    "width": 960,
+    "height": 827,
+    "encodedFormat": "jpeg",
+    "filenameExtension": "png",
+    "imageStoredInRepository": false
+  },
+  "annotation": {
+    "date": "2026-10-20",
+    "method": "人工查看原图及局部放大；未调用付费模型。",
+    "status": "draft_manual_reference_pending_grouping_confirmation",
+    "coordinateSpace": "original_image_pixels",
+    "boundsFormat": "x,y,width,height；左上角为原点",
+    "boundsAreCoarse": true,
+    "textIsVerifiedOCR": false,
+    "notes": [
+      "框只用于定位与人工逐项对应，允许相邻框轻微重叠；不能直接当人物 alpha 或水印 mask。",
+      "正文文字、耳环、飘带、花朵、脚部及离散装饰默认随所属设计一起保留。",
+      "印刷设计内部自带裁切的半身像仍可构成完整设计；源图片边界切断的内容另行标注。",
+      "底部四条彩色头像条幅暂按四个独立矩形候选计数；MX-046 为已知截断。",
+      "MX-038 暂将 Que、沙锤花朵和下方 Viva México 人物建筑场景合并为一个设计；归属仍需确认。",
+      "稳定 ID 不随模型返回顺序改变；若确认需要拆分或合并，必须先修订清单版本和覆盖分母。"
+    ]
+  },
+  "excludedOverlays": [
+    {
+      "id": "OVERLAY-001",
+      "label": "横贯画面的黑色尺寸说明",
+      "visibleText": "Para listones de 7.5 cm",
+      "bounds": { "x": 49, "y": 289, "width": 379, "height": 39 },
+      "extractAsAsset": false,
+      "notes": "这是尺寸说明，不是独立设计。与若干设计重叠，去除后被遮原画只能推断恢复；不能据此宣称原像素恢复。"
+    },
+    {
+      "id": "OVERLAY-002",
+      "label": "全图重复斜向白色半透明手写署名",
+      "visibleText": "多处重复的 By… 手写署名，低清内容不做精确转写。",
+      "bounds": { "x": 0, "y": 0, "width": 960, "height": 827 },
+      "extractAsAsset": false,
+      "notes": "该框只表示水印分布遍及全图，绝不能作为整图修复 mask。应单独定位水印笔画像素，且保留设计本身的西语文字。"
+    }
+  ],
+  "coverageGate": {
+    "referenceCandidateCount": 46,
+    "minimumCoverageRate": 0.9,
+    "minimumMatchedCandidates": 42,
+    "minimumIntegerCoverageRate": 0.9130434782608695,
+    "knownSourceTruncatedCandidateIds": ["MX-046"],
+    "aiEvaluationStatus": "not_run",
+    "aiMatchedCandidateCount": null,
+    "aiCoverageRate": null,
+    "aiQualityPassRate": null,
+    "matchingRules": [
+      "人工逐 ID 将模型输出与参考设计一一对应；漏检计未覆盖，重复输出不能多计，错误额外输出另计。",
+      "同一设计被拆成多个字母、花朵或配件，不算完整候选覆盖；应先合并为一个可对应的输出。",
+      "人物与相邻独立设计粘连为一个输出，不能同时覆盖两个 ID。",
+      "仅有粗框相交或检测到主体脸部不足以算覆盖；必须涵盖该项应保留的正文和配件。",
+      "MX-046 仍进入候选覆盖分母，但源图已截断，未经用户确认可接受源图残片前不能计为完整素材质量通过。",
+      "先确认 MX-038 与底部条幅的组装口径，再冻结分母；不得看过模型结果后改变口径以提高通过率。"
+    ],
+    "limitation": "42/46 仅是至少 90% 候选覆盖的整数门槛，不代表透明边缘、水印清除、像素对应或完整素材质量达到 90%。本清单没有任何真实 AI 检测结果。"
+  },
+  "assemblyAmbiguities": [
+    {
+      "ids": ["MX-038"],
+      "currentDecision": "将 Que + 两只沙锤与花朵 + Viva México 人物建筑场景视为一个组合。",
+      "alternative": "上方 Que 与装饰可能是独立素材；若确认拆分，总参考数变为 47，至少需覆盖 43。",
+      "reason": "Que 单独作为标语不完整，上下间距较小但像素并不相连。仅凭这张拼图不能确定原作者分组。"
+    },
+    {
+      "ids": ["MX-043", "MX-044", "MX-045", "MX-046"],
+      "currentDecision": "四种配色的头像条幅各为一个 rectangle。",
+      "alternative": "若来源文件把四条排版作为一个整体，则应改为一个组合条幅；其底边仍截断。",
+      "reason": "有明显水平配色分界；最后一条源图不完整，不可要求分割模型补造完整人物。"
+    },
+    {
+      "ids": ["MX-041", "MX-042"],
+      "currentDecision": "两面相似国旗保持两个稳定 ID。",
+      "alternative": "下载时可另做用户选择的去重，但一一对应验收时不能先合并计数。",
+      "reason": "两个独立放置的矩形原图实例，各有独立位置与像素。"
+    },
+    {
+      "ids": ["MX-001", "MX-011", "MX-028", "MX-029", "MX-036", "MX-039"],
+      "currentDecision": "每项内部的文字、卡牌、动物、人物或装饰组成同一设计。",
+      "alternative": "只有用户明确指定拆件时才单独导出内部组件。",
+      "reason": "连通域无法表达这些设计的归属关系，不能按彼此不接触的像素块拆分。"
+    }
+  ],
+  "designs": [
+    {
+      "id": "MX-001",
+      "label": "左上角墨西哥民俗图标拼贴",
+      "kind": "cutout",
+      "bounds": { "x": 2, "y": 1, "width": 112, "height": 115 },
+      "visibility": "edge_uncertain",
+      "textToPreserve": ["右下斜排小字，疑为 Hecho en México；低清待核对"],
+      "accessoriesToPreserve": ["全部分散食物、饮品、面具、玩偶及民俗小图标"],
+      "notes": ["多个不相连图标暂按一个整体拼贴；顶部和左侧接近源边界，需检查是否有微小截切。"]
+    },
+    {
+      "id": "MX-002",
+      "label": "彩虹头饰和彩虹裙双辫女孩",
+      "kind": "cutout",
+      "bounds": { "x": 114, "y": 0, "width": 117, "height": 166 },
+      "visibility": "edge_uncertain",
+      "textToPreserve": [],
+      "accessoriesToPreserve": ["彩虹头饰、两侧辫子与丝带、裙边、双脚鞋"],
+      "notes": ["头饰贴近上边界；不能只截取脸和裙身。"]
+    },
+    {
+      "id": "MX-003",
+      "label": "上方 ALTANERA PRECIOSA Y ORGULLOSA 花卉标语",
+      "kind": "cutout",
+      "bounds": { "x": 239, "y": 0, "width": 119, "height": 143 },
+      "visibility": "edge_uncertain",
+      "textToPreserve": ["ALTANERA", "PRECIOSA", "Y ORGULLOSA"],
+      "accessoriesToPreserve": ["上方花叶、下方花卉与弧线装饰"],
+      "notes": ["所有字母和花卉属于一个设计；顶部花叶接近源边界。"]
+    },
+    {
+      "id": "MX-004",
+      "label": "白色宽檐帽与绿白红舞裙女孩",
+      "kind": "cutout",
+      "bounds": { "x": 362, "y": 7, "width": 120, "height": 182 },
+      "visibility": "appears_complete",
+      "textToPreserve": [],
+      "accessoriesToPreserve": ["完整宽檐帽、头后丝带、张开的整片裙摆、两脚"],
+      "notes": ["裙摆横向展开，不能按身体窄框裁切。"]
+    },
+    {
+      "id": "MX-005",
+      "label": "黑发玫红披肩彩色传统裙女孩",
+      "kind": "cutout",
+      "bounds": { "x": 486, "y": 1, "width": 109, "height": 184 },
+      "visibility": "edge_uncertain",
+      "textToPreserve": [],
+      "accessoriesToPreserve": ["发间花饰、披肩流苏、裙摆和双鞋"],
+      "notes": ["发顶接近上边界；与右侧黑裙女孩为不同设计。"]
+    },
+    {
+      "id": "MX-006",
+      "label": "黑色宽檐帽提裙女孩",
+      "kind": "cutout",
+      "bounds": { "x": 605, "y": 1, "width": 114, "height": 190 },
+      "visibility": "edge_uncertain",
+      "textToPreserve": [],
+      "accessoriesToPreserve": ["宽檐帽、绿白红丝带、蕾丝裙摆和双靴"],
+      "notes": ["帽缘与顶部相近；白色重复署名不属于裙子花边。"]
+    },
+    {
+      "id": "MX-007",
+      "label": "花冠黑底彩花裙女孩",
+      "kind": "cutout",
+      "bounds": { "x": 729, "y": 0, "width": 111, "height": 178 },
+      "visibility": "edge_uncertain",
+      "textToPreserve": [],
+      "accessoriesToPreserve": ["花冠、辫子、侧边彩色披肩流苏和鞋"],
+      "notes": ["顶部花饰可能贴边；与两侧女孩分别输出。"]
+    },
+    {
+      "id": "MX-008",
+      "label": "绿白红头饰与粉绿裙双辫女孩",
+      "kind": "cutout",
+      "bounds": { "x": 835, "y": 0, "width": 124, "height": 175 },
+      "visibility": "edge_uncertain",
+      "textToPreserve": [],
+      "accessoriesToPreserve": ["顶部丝带、两侧辫子、粉色披肩、绿裙和花纹"],
+      "notes": ["顶端饰带贴到源图边缘，可能被截切；禁止凭空补全后宣称原样提取。"]
+    },
+    {
+      "id": "MX-009",
+      "label": "左侧花冠黑裙 Frida 大头女孩",
+      "kind": "cutout",
+      "bounds": { "x": 4, "y": 117, "width": 114, "height": 203 },
+      "visibility": "appears_complete",
+      "textToPreserve": [],
+      "accessoriesToPreserve": ["整束花冠、耳环、衣领花纹、黑裙和双脚"],
+      "notes": [
+        "尺寸说明 OVERLAY-001 横过下部，需区分说明字与原裙纹/脚部；未知原像素不能保证还原。"
+      ]
+    },
+    {
+      "id": "MX-010",
+      "label": "红蝴蝶结卡通女孩与 VIVA MÉXICO 花框",
+      "kind": "cutout",
+      "bounds": { "x": 118, "y": 166, "width": 116, "height": 151 },
+      "visibility": "appears_complete",
+      "textToPreserve": ["VIVA MÉXICO"],
+      "accessoriesToPreserve": ["红色大蝴蝶结、人物、左右花叶、小装饰、下方标语"],
+      "notes": ["人物和花框标语须合在一起；OVERLAY-001 遮挡下方文字，不能把剩余字当多个素材。"]
+    },
+    {
+      "id": "MX-011",
+      "label": "绿白红舞裙女孩与持吉他男孩",
+      "kind": "cutout",
+      "bounds": { "x": 239, "y": 144, "width": 122, "height": 149 },
+      "visibility": "appears_complete",
+      "textToPreserve": [],
+      "accessoriesToPreserve": ["两名人物、女孩丝带裙摆、男孩帽子与吉他、双方脚部"],
+      "notes": ["双人组是一个完整设计，不默认拆成两个人物。"]
+    },
+    {
+      "id": "MX-012",
+      "label": "红白玫瑰与 MÉXICO 绿红字",
+      "kind": "cutout",
+      "bounds": { "x": 364, "y": 191, "width": 121, "height": 134 },
+      "visibility": "appears_complete",
+      "textToPreserve": ["MÉXICO"],
+      "accessoriesToPreserve": ["上下红白玫瑰、绿叶、小花及完整文字"],
+      "notes": ["OVERLAY-001 的 cm 区域靠近/遮挡下方花叶；尺寸说明不保留为正文。"]
+    },
+    {
+      "id": "MX-013",
+      "label": "绿白红头箍与传统上衣托腮女子",
+      "kind": "cutout",
+      "bounds": { "x": 484, "y": 183, "width": 124, "height": 191 },
+      "visibility": "appears_complete",
+      "textToPreserve": [],
+      "accessoriesToPreserve": ["完整头箍、长辫子、耳环、托腮手和下缘荷叶衣摆"],
+      "notes": ["这是半身插画设计，不能为凑全身生成不存在的下半身。"]
+    },
+    {
+      "id": "MX-014",
+      "label": "彩色丝带与粉蓝服饰托腮女子",
+      "kind": "cutout",
+      "bounds": { "x": 611, "y": 187, "width": 120, "height": 188 },
+      "visibility": "appears_complete",
+      "textToPreserve": [],
+      "accessoriesToPreserve": ["高束彩色丝带、长发、手、首饰和可见衣摆"],
+      "notes": ["保留原有半身终止边界；与相邻蓝裙玩偶无关。"]
+    },
+    {
+      "id": "MX-015",
+      "label": "蓝白头饰蓝裙双辫玩偶",
+      "kind": "cutout",
+      "bounds": { "x": 728, "y": 181, "width": 110, "height": 167 },
+      "visibility": "appears_complete",
+      "textToPreserve": [],
+      "accessoriesToPreserve": ["蓝白放射头饰、两辫丝带、花裙边、双鞋"],
+      "notes": ["浅色头饰和白色衣袖不可误删成背景。"]
+    },
+    {
+      "id": "MX-016",
+      "label": "右侧圆脸大眼花耳彩裙女孩",
+      "kind": "cutout",
+      "bounds": { "x": 835, "y": 173, "width": 125, "height": 124 },
+      "visibility": "edge_uncertain",
+      "textToPreserve": ["裙下极小字样若属于原设计应保留；内容低清待核对"],
+      "accessoriesToPreserve": ["两耳旁彩色花朵、圆脸、全部彩色裙摆"],
+      "notes": ["右侧花瓣贴近图像边缘，可能有截切；小字不能未经确认当水印删掉。"]
+    },
+    {
+      "id": "MX-017",
+      "label": "墨镜 Frida 鲜花矩形肖像",
+      "kind": "rectangle",
+      "bounds": { "x": 2, "y": 327, "width": 116, "height": 172 },
+      "visibility": "appears_complete",
+      "textToPreserve": ["图内原有微小装饰文字，低清待核对"],
+      "accessoriesToPreserve": ["整块蓝绿花卉背景、人物、墨镜、头饰、衣饰"],
+      "notes": ["这是满版矩形海报，不能仅抠出人物而丢掉背景花纹。"]
+    },
+    {
+      "id": "MX-018",
+      "label": "火焰圣心 MEXICANA chingona",
+      "kind": "cutout",
+      "bounds": { "x": 120, "y": 319, "width": 116, "height": 145 },
+      "visibility": "appears_complete",
+      "textToPreserve": ["MEXICANA", "chingona"],
+      "accessoriesToPreserve": ["顶端火焰、两侧枝叶、心形金边和底部垂饰"],
+      "notes": ["顶端接近尺寸说明遮盖区域；心中细字必须随心形一起保留。"]
+    },
+    {
+      "id": "MX-019",
+      "label": "彩色墨西哥轮廓民俗图案与弧形文字",
+      "kind": "cutout",
+      "bounds": { "x": 233, "y": 306, "width": 132, "height": 110 },
+      "visibility": "appears_complete",
+      "textToPreserve": ["弧形正文可见片段：… LLEVA MÉXICO … EN LA PIEL …；完整转写待核对"],
+      "accessoriesToPreserve": ["轮廓中的面具/人物/彩色图案、外缘花饰、小心形与所有弧形字"],
+      "notes": ["顶部受 OVERLAY-001 干扰，图案身份与文字低清；不能把弧形正文当水印去除。"]
+    },
+    {
+      "id": "MX-020",
+      "label": "邮票轮廓墨西哥彩衣玩偶",
+      "kind": "cutout",
+      "bounds": { "x": 366, "y": 317, "width": 119, "height": 128 },
+      "visibility": "appears_complete",
+      "textToPreserve": ["MÉXICO"],
+      "accessoriesToPreserve": ["完整细线邮票外框、玩偶头饰、裙摆、下方字样"],
+      "notes": ["邮票边框不是背景脏边；即使与主体不连通也应保留。"]
+    },
+    {
+      "id": "MX-021",
+      "label": "抱 Pide un deseo 红心的布娃娃",
+      "kind": "cutout",
+      "bounds": { "x": 488, "y": 370, "width": 114, "height": 142 },
+      "visibility": "appears_complete",
+      "textToPreserve": ["Pide un deseo"],
+      "accessoriesToPreserve": ["彩色头饰、双辫、红心、握心双手和蓝色裙摆"],
+      "notes": ["心中文字是设计正文，不是水印。"]
+    },
+    {
+      "id": "MX-022",
+      "label": "宽檐花帽侧脸女子与仙人掌国旗",
+      "kind": "cutout",
+      "bounds": { "x": 601, "y": 369, "width": 119, "height": 177 },
+      "visibility": "appears_complete",
+      "textToPreserve": [],
+      "accessoriesToPreserve": ["完整帽檐、玫瑰、女子、左侧仙人掌、下方旗面与绿叶"],
+      "notes": ["仙人掌和旗面属于人物组合；半身像无需生成腿部。"]
+    },
+    {
+      "id": "MX-023",
+      "label": "戴草帽举沙锤的笑脸玉米饼",
+      "kind": "cutout",
+      "bounds": { "x": 729, "y": 348, "width": 108, "height": 100 },
+      "visibility": "appears_complete",
+      "textToPreserve": [],
+      "accessoriesToPreserve": ["草帽、双侧沙锤、馅料、脸和双脚"],
+      "notes": ["草帽和沙锤不应分成额外候选。"]
+    },
+    {
+      "id": "MX-024",
+      "label": "背影双辫彩带刺绣上衣女子",
+      "kind": "cutout",
+      "bounds": { "x": 838, "y": 295, "width": 122, "height": 181 },
+      "visibility": "edge_uncertain",
+      "textToPreserve": [],
+      "accessoriesToPreserve": ["两条完整辫子、两侧蝴蝶结、肩袖刺绣和下垂彩带"],
+      "notes": ["右肩接近源右边界；下垂彩带属于同一设计。"]
+    },
+    {
+      "id": "MX-025",
+      "label": "左中 ALTANERA PRECIOSA Y ORGULLOSA 多彩标语",
+      "kind": "cutout",
+      "bounds": { "x": 3, "y": 499, "width": 128, "height": 94 },
+      "visibility": "appears_complete",
+      "textToPreserve": ["ALTANERA", "PRECIOSA", "Y ORGULLOSA"],
+      "accessoriesToPreserve": ["整组文字、心形、细小花叶和彩色点缀"],
+      "notes": ["与 MX-003 为不同位置、不同版式的独立实例，不能合并去重后漏计。"]
+    },
+    {
+      "id": "MX-026",
+      "label": "Tengo una corazonada 花心女孩",
+      "kind": "cutout",
+      "bounds": { "x": 127, "y": 466, "width": 122, "height": 118 },
+      "visibility": "appears_complete",
+      "textToPreserve": ["Tengo una corazonada"],
+      "accessoriesToPreserve": ["上方整条弧形文字、火焰/花叶、心形花边、女孩"],
+      "notes": ["上方不相连的字弧不可漏掉。"]
+    },
+    {
+      "id": "MX-027",
+      "label": "草帽彩色披肩笑脸仙人掌",
+      "kind": "cutout",
+      "bounds": { "x": 244, "y": 424, "width": 117, "height": 125 },
+      "visibility": "appears_complete",
+      "textToPreserve": [],
+      "accessoriesToPreserve": ["完整大草帽、仙人掌两侧手臂、披肩条纹与流苏"],
+      "notes": ["帽檐明显宽于身体，使用完整设计框。"]
+    },
+    {
+      "id": "MX-028",
+      "label": "LOTERÍA 彩色卡牌字标",
+      "kind": "cutout",
+      "bounds": { "x": 362, "y": 447, "width": 129, "height": 72 },
+      "visibility": "appears_complete",
+      "textToPreserve": ["LOTERÍA"],
+      "accessoriesToPreserve": ["各字母、上方卡牌与小图标、左右草帽/装饰和底部花叶"],
+      "notes": ["整组卡牌和文字是一个设计，不能把每张卡牌另算候选。"]
+    },
+    {
+      "id": "MX-029",
+      "label": "太阳卡牌与仙人掌西瓜玫瑰",
+      "kind": "cutout",
+      "bounds": { "x": 386, "y": 517, "width": 107, "height": 101 },
+      "visibility": "appears_complete",
+      "textToPreserve": ["卡牌底部小字，疑为 EL SOL；待核对"],
+      "accessoriesToPreserve": ["整张太阳卡牌、左侧仙人掌、右侧西瓜与玫瑰花叶"],
+      "notes": ["卡牌是组合内部组件，外侧植物与水果也属于该项。"]
+    },
+    {
+      "id": "MX-030",
+      "label": "中下花冠蓝黄彩裙 Frida 全身女孩",
+      "kind": "cutout",
+      "bounds": { "x": 483, "y": 511, "width": 114, "height": 197 },
+      "visibility": "appears_complete",
+      "textToPreserve": [],
+      "accessoriesToPreserve": ["完整花冠与发髻、耳环、围巾、叠层裙摆和鞋"],
+      "notes": ["两侧首饰及裙边小花不可因离散而丢失。"]
+    },
+    {
+      "id": "MX-031",
+      "label": "中右小号墨西哥国徽与弧形国名",
+      "kind": "cutout",
+      "bounds": { "x": 577, "y": 543, "width": 116, "height": 118 },
+      "visibility": "appears_complete",
+      "textToPreserve": ["ESTADOS UNIDOS MEXICANOS"],
+      "accessoriesToPreserve": ["整段环绕国名、鹰蛇、仙人掌、水石、下方枝叶与丝带"],
+      "notes": ["文字与徽章不能拆开；鹰翅和蛇是精细边界验收重点。"]
+    },
+    {
+      "id": "MX-032",
+      "label": "右中草帽花卉 Viva México",
+      "kind": "cutout",
+      "bounds": { "x": 710, "y": 449, "width": 122, "height": 160 },
+      "visibility": "appears_complete",
+      "textToPreserve": ["Viva México"],
+      "accessoriesToPreserve": ["顶端草帽、整组立体文字、红白花朵、叶片、底端饰带"],
+      "notes": ["保留花叶和文字间的真实空隙，不按连通域拆字。"]
+    },
+    {
+      "id": "MX-033",
+      "label": "右侧粉底 VIVA MÉXICO 民俗花鸟矩形海报",
+      "kind": "rectangle",
+      "bounds": { "x": 837, "y": 474, "width": 119, "height": 202 },
+      "visibility": "appears_complete",
+      "textToPreserve": ["VIVA MÉXICO"],
+      "accessoriesToPreserve": ["整个矩形粉底、四周民俗边框、花鸟、草帽与国徽"],
+      "notes": ["海报背景及边框属于设计；不要只抠中间字。"]
+    },
+    {
+      "id": "MX-034",
+      "label": "左下解剖心脏 México 手写背景海报",
+      "kind": "rectangle",
+      "bounds": { "x": 5, "y": 596, "width": 118, "height": 158 },
+      "visibility": "appears_complete",
+      "textToPreserve": ["México", "背景原有密集手写纹理"],
+      "accessoriesToPreserve": ["整块浅底、彩色心脏、花叶、下方蓝花及四周小花"],
+      "notes": ["背景手写纹理是设计内容，不能和斜向重复白水印一并删除。"]
+    },
+    {
+      "id": "MX-035",
+      "label": "左下墨西哥街景民俗拼贴矩形海报",
+      "kind": "rectangle",
+      "bounds": { "x": 136, "y": 594, "width": 115, "height": 158 },
+      "visibility": "appears_complete",
+      "textToPreserve": ["海报中的原生标牌、圆盘及竖排小字，内容低清待核对"],
+      "accessoriesToPreserve": ["完整矩形内街景、花卉、卡牌、器物与图案"],
+      "notes": ["图内所有拼贴组件与背景一起保留；不能逐件拆成小素材。"]
+    },
+    {
+      "id": "MX-036",
+      "label": "花羽蜂鸟 Frida 极简头像与飞翔名句",
+      "kind": "cutout",
+      "bounds": { "x": 254, "y": 545, "width": 132, "height": 163 },
+      "visibility": "appears_complete",
+      "textToPreserve": [
+        "Pies para qué los quiero, si tengo alas para volar（按可见内容人工粗转写，拼写和重音待核对）"
+      ],
+      "accessoriesToPreserve": [
+        "头顶全部花羽与蝴蝶、右上蜂鸟、头发眉形、分离的两耳饰、下方两行正文"
+      ],
+      "notes": ["蜂鸟和两行正文距离头像较远，但属于完整设计；不能漏掉或分别输出。"]
+    },
+    {
+      "id": "MX-037",
+      "label": "底部红绿花叶 Viva México 字标",
+      "kind": "cutout",
+      "bounds": { "x": 265, "y": 718, "width": 121, "height": 102 },
+      "visibility": "appears_complete",
+      "textToPreserve": ["Viva México"],
+      "accessoriesToPreserve": ["上方细线草帽、红绿整字、侧边花叶、底端淡黄色装饰"],
+      "notes": ["细线帽子与淡色底饰不可按背景删除。"]
+    },
+    {
+      "id": "MX-038",
+      "label": "Que Viva México 沙锤花朵与人物庆典场景组合",
+      "kind": "cutout",
+      "bounds": { "x": 385, "y": 606, "width": 126, "height": 221 },
+      "visibility": "grouping_and_edge_uncertain",
+      "textToPreserve": ["Que", "Viva México"],
+      "accessoriesToPreserve": ["上方两只沙锤与彩色花朵、下方人物、动物、庆典装饰、建筑和底部饰物"],
+      "notes": [
+        "暂按完整标语组合计一个 ID；上部装饰是否另件需用户确认。底端靠近图边，可能存在微小截切。"
+      ]
+    },
+    {
+      "id": "MX-039",
+      "label": "Deja tú lo guapa soy MEXICANA 彩色花字组合",
+      "kind": "cutout",
+      "bounds": { "x": 514, "y": 707, "width": 129, "height": 120 },
+      "visibility": "edge_uncertain",
+      "textToPreserve": ["Deja tú lo guapa", "soy", "MEXICANA"],
+      "accessoriesToPreserve": ["全部彩色花叶、字内与两侧小人物/装饰、完整多行文字"],
+      "notes": ["底部触近源图边界；字标中小人物是组合装饰，不单独计候选。文字粗转写待核对。"]
+    },
+    {
+      "id": "MX-040",
+      "label": "右下大号墨西哥国徽与弧形国名",
+      "kind": "cutout",
+      "bounds": { "x": 643, "y": 621, "width": 195, "height": 206 },
+      "visibility": "edge_uncertain",
+      "textToPreserve": ["ESTADOS UNIDOS MEXICANOS"],
+      "accessoriesToPreserve": ["完整弧形国名、鹰翅、蛇、仙人掌、花、根部与下方枝叶丝带"],
+      "notes": ["与 MX-031 是两个独立尺寸实例；下方枝叶靠近边界，需检查尖端是否完整。"]
+    },
+    {
+      "id": "MX-041",
+      "label": "最左下墨西哥国旗矩形一",
+      "kind": "rectangle",
+      "bounds": { "x": 7, "y": 757, "width": 117, "height": 68 },
+      "visibility": "appears_complete",
+      "textToPreserve": [],
+      "accessoriesToPreserve": ["完整绿白红三色矩形和中央小国徽"],
+      "notes": ["白色中栏是国旗本身，不能抠掉成透明。"]
+    },
+    {
+      "id": "MX-042",
+      "label": "左下第二面墨西哥国旗矩形",
+      "kind": "rectangle",
+      "bounds": { "x": 137, "y": 757, "width": 116, "height": 68 },
+      "visibility": "appears_complete",
+      "textToPreserve": [],
+      "accessoriesToPreserve": ["完整绿白红三色矩形和中央小国徽"],
+      "notes": ["与 MX-041 分别对应原图位置；不得自动合并导致计数缺失。"]
+    },
+    {
+      "id": "MX-043",
+      "label": "右下黄紫配色笑脸头像条幅",
+      "kind": "rectangle",
+      "bounds": { "x": 840, "y": 677, "width": 115, "height": 42 },
+      "visibility": "grouping_uncertain",
+      "textToPreserve": [],
+      "accessoriesToPreserve": ["完整黄紫色条幅背景、人物头发、笑脸与蝴蝶结形配色"],
+      "notes": ["暂按单条矩形设计；若四条应整组输出，需先修改组装口径。"]
+    },
+    {
+      "id": "MX-044",
+      "label": "右下蓝红配色笑脸头像条幅",
+      "kind": "rectangle",
+      "bounds": { "x": 840, "y": 717, "width": 115, "height": 43 },
+      "visibility": "grouping_uncertain",
+      "textToPreserve": [],
+      "accessoriesToPreserve": ["完整蓝红色背景、人物头发、笑脸与配色图案"],
+      "notes": ["与上下条幅边界密集，粗框允许少量重叠；实际矩形裁切需人工确认水平分界。"]
+    },
+    {
+      "id": "MX-045",
+      "label": "右下绿色配色笑脸头像条幅",
+      "kind": "rectangle",
+      "bounds": { "x": 840, "y": 758, "width": 115, "height": 43 },
+      "visibility": "grouping_uncertain",
+      "textToPreserve": [],
+      "accessoriesToPreserve": ["完整深浅绿色背景、人物头发、笑脸与配色图案"],
+      "notes": ["暂独立输出；不能仅抠人物而丢掉条幅背景。"]
+    },
+    {
+      "id": "MX-046",
+      "label": "右下粉橙配色头像条幅残片",
+      "kind": "rectangle",
+      "bounds": { "x": 840, "y": 800, "width": 115, "height": 27 },
+      "visibility": "known_truncated",
+      "textToPreserve": [],
+      "accessoriesToPreserve": ["源图中现存的粉橙背景、头发和可见脸部"],
+      "notes": [
+        "源图在 y=827 明确截断最后一条头像。只能提取现存残片并提示缺失，不能当作完整人物通过质量验收，也不能补画后声称与原图完整对应。"
+      ]
+    }
+  ]
+}

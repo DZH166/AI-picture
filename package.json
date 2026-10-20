@@ -1,12 +1,13 @@
 {
   "name": "ai-material-factory",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
+    "dev": "node scripts/dev.mjs",
+    "start": "node --import tsx server/index.ts",
     "build": "tsc -b && vite build",
-    "preview": "vite preview --host 127.0.0.1",
+    "preview": "node --import tsx server/index.ts",
     "typecheck": "tsc -b",
     "lint": "eslint .",
     "test": "vitest run",
@@ -16,11 +17,17 @@
     "fflate": "^0.8.2",
     "lucide-react": "^0.468.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "fastify": "^5.6.0",
+    "@fastify/cookie": "^11.0.2",
+    "@fastify/multipart": "^9.2.1",
+    "@fastify/static": "^8.3.0",
+    "sharp": "^0.34.4",
+    "tsx": "^4.20.6"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
-    "@types/node": "^22.10.0",
+    "@types/node": "^24.9.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^4.3.4",

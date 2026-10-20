@@ -2,17 +2,23 @@
 chcp 65001 >nul
 setlocal
 cd /d "%~dp0"
-set "FACTORY_NODE=node"
+set "PICTURE_NODE=node"
 where node >nul 2>nul
 if errorlevel 1 (
-  set "FACTORY_NODE=%USERPROFILE%\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe"
+  set "PICTURE_NODE=%USERPROFILE%\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe"
 )
-if not exist "node_modules\vite\bin\vite.js" (
-  echo 请先在本目录运行 npm install 安装依赖，再重新双击启动。
+if not exist "node_modules\tsx\dist\loader.mjs" (
+  echo 请先在本目录运行 pnpm install 安装依赖。
   pause
   exit /b 1
 )
-echo 正在启动 AI 素材工厂，浏览器将自动打开。
-echo 使用期间请保留此窗口。按 Ctrl+C 可以停止服务。
-"%FACTORY_NODE%" "node_modules\vite\bin\vite.js" --host 127.0.0.1 --open
+if not exist "dist\index.html" (
+  echo 请先在本目录运行 pnpm build 生成页面。
+  pause
+  exit /b 1
+)
+echo 正在启动 AI-picture。
+echo 管理员请使用本机地址；员工请使用下方显示的局域网地址。
+echo 使用期间保留此窗口，按 Ctrl+C 停止服务。
+"%PICTURE_NODE%" --import tsx server/index.ts --open
 pause

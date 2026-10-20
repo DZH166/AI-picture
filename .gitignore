@@ -7,3 +7,8 @@ dist/
 *.log
 *.tsbuildinfo
 test-output/
+data/
+*.sqlite*
+*.db
+master.key
+secrets.json
